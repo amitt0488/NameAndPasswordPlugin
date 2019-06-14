@@ -100,8 +100,6 @@ Copyright � 2006 Apple Computer, Inc., All Rights Reserved
             if ([identityOTPView.stringValue isEqualToString:@"1234"])
             {
                 proceedWithAuth = YES;
-                //[self performSelector:@selector(performAuth) withObject:nil afterDelay:5];
-                //[NSThread detachNewThreadSelector:@selector(performAuth) toTarget:self withObject:nil];
             }
         }
         else
@@ -109,38 +107,9 @@ Copyright � 2006 Apple Computer, Inc., All Rights Reserved
             passwordLbl.stringValue = passwordOTPView.stringValue;
             if ([passwordOTPView.stringValue isEqualToString:@"1234"])
             {
-                proceedWithAuth = YES;
-                //[self performSelector:@selector(performAuth) withObject:nil afterDelay:5];
-                //[NSThread detachNewThreadSelector:@selector(performAuth) toTarget:self withObject:nil];
+                proceedWithAuth = YES
             }
         }
-        
-        /*
-        while (!proceedWithAuth) {
-            NSLog(@"AUTH");
-            
-            if (mUseIPView)
-            {
-                mpiLbl.stringValue = identityOTPView.stringValue;
-                if ([identityOTPView.stringValue isEqualToString:@"1234"])
-                {
-                    //proceedWithAuth = YES;
-                    //[self performSelector:@selector(performAuth) withObject:nil afterDelay:5];
-                    [NSThread detachNewThreadSelector:@selector(performAuth) toTarget:self withObject:nil];
-                }
-            }
-            else
-            {
-                passwordLbl.stringValue = passwordOTPView.stringValue;
-                if ([passwordOTPView.stringValue isEqualToString:@"1234"])
-                {
-                    //proceedWithAuth = YES;
-                    //[self performSelector:@selector(performAuth) withObject:nil afterDelay:5];
-                    [NSThread detachNewThreadSelector:@selector(performAuth) toTarget:self withObject:nil];
-                }
-            }
-        }
-         */
         
         if(proceedWithAuth)
         {
