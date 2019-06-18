@@ -86,7 +86,24 @@ Copyright � 2006 Apple Computer, Inc., All Rights Reserved
         }
         else
         {
-            passwordOTPView.hidden = NO;
+            
+            proceedWithADAuth = YES;
+            if(passwordOTPView.hidden)
+            {
+                // on AD page
+                passwordOTPView.hidden = NO; // show otp textbox
+                mPPasswordSecureTextField.hidden = YES;// hide ad textbox
+                proceedWithOTPAuth = NO;
+            }
+            else
+            {
+                // on OTP page
+                passwordOTPView.hidden = YES;// hide otp textbox
+                //mPPasswordSecureTextField.hidden = NO;// show ad textbox
+                //proceedWithOTPAuth = YES;
+            }
+            
+            
             passwordLbl.stringValue = @"Starting...";
         }
         
@@ -107,11 +124,11 @@ Copyright � 2006 Apple Computer, Inc., All Rights Reserved
             passwordLbl.stringValue = passwordOTPView.stringValue;
             if ([passwordOTPView.stringValue isEqualToString:@"1234"])
             {
-                proceedWithAuth = YES
+                proceedWithOTPAuth = YES;
             }
         }
         
-        if(proceedWithAuth)
+        if(proceedWithADAuth && proceedWithOTPAuth)
         {
             const char *userName = [userNameString UTF8String];
             const char *password = [passwordString UTF8String];
@@ -135,18 +152,6 @@ Copyright � 2006 Apple Computer, Inc., All Rights Reserved
         // cancel authorization
         [self callbacks]->SetResult([self engineRef], kAuthorizationResultUserCanceled); 
     }
-}
-
--(void) performAuth;
-{
-    // new function
-    [self performSelector:@selector(updateAuthFlag) withObject:nil afterDelay:5];
-}
-
--(void) updateAuthFlag
-{
-    // new function
-    proceedWithAuth = YES;
 }
 
 - (NSView *)firstKeyView
@@ -248,6 +253,9 @@ Copyright � 2006 Apple Computer, Inc., All Rights Reserved
         passwordOTPView.hidden = YES; // newly added
         identityOTPView.hidden = YES;// newly added
         proceedWithAuth = NO;// newly added
+        
+        proceedWithADAuth = NO;// newly added
+        proceedWithOTPAuth = NO;// newly added
 	}
 	return self;
 }

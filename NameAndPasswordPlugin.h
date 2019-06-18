@@ -70,6 +70,9 @@ Copyright � 2006 Apple Computer, Inc., All Rights Reserved
 	BOOL						mUseIPView;
     
     BOOL                        proceedWithAuth;
+    
+    BOOL                        proceedWithADAuth;
+    BOOL                        proceedWithOTPAuth;
 }
 
 
