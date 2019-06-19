@@ -90,24 +90,25 @@ Copyright � 2006 Apple Computer, Inc., All Rights Reserved
             proceedWithADAuth = YES;
             if(passwordOTPView.hidden)
             {
-                // on AD page
+                // when we click next on AD page
                 passwordOTPView.hidden = NO; // show otp textbox
+                lblOtp.hidden = NO; // show otp label
                 mPPasswordSecureTextField.hidden = YES;// hide ad textbox
-                proceedWithOTPAuth = NO;
+                lblPassword.hidden = YES; // hide ad label
             }
             else
             {
-                // on OTP page
-                passwordOTPView.hidden = YES;// hide otp textbox
-                //mPPasswordSecureTextField.hidden = NO;// show ad textbox
-                //proceedWithOTPAuth = YES;
+                // when we click next on OTP page
+                //passwordOTPView.hidden = YES;// hide otp textbox
+                //lblPassword.hidden = YES; // hide otp label
+               
             }
             
             
-            passwordLbl.stringValue = @"Starting...";
+            //passwordLbl.stringValue = @"Starting...";
         }
         
-        [self updateView];
+        //[self updateView];
         
         NSLog(@"AUTH");
         
@@ -116,15 +117,30 @@ Copyright � 2006 Apple Computer, Inc., All Rights Reserved
             mpiLbl.stringValue = identityOTPView.stringValue;
             if ([identityOTPView.stringValue isEqualToString:@"1234"])
             {
-                proceedWithAuth = YES;
+                proceedWithOTPAuth = YES;
             }
         }
         else
         {
-            passwordLbl.stringValue = passwordOTPView.stringValue;
+            //passwordLbl.stringValue = passwordOTPView.stringValue;
             if ([passwordOTPView.stringValue isEqualToString:@"1234"])
             {
+                // correct otp
+                proceedWithADAuth = YES;
                 proceedWithOTPAuth = YES;
+                passwordOTPView.hidden = YES;// hide otp textbox
+                lblPassword.hidden = YES; // hide otp label
+            }
+            else
+            {
+                // incorrect otp
+                proceedWithOTPAuth = NO;
+                /*
+                mPPasswordSecureTextField.hidden = YES;// hide ad textbox
+                lblPassword.hidden = YES: // hide ad label
+                passwordOTPView.hidden = NO;// show otp textbox
+                lblOtp.hidden = NO; // show otp label
+                 */
             }
         }
         
@@ -252,7 +268,8 @@ Copyright � 2006 Apple Computer, Inc., All Rights Reserved
 		// do any additional initialization
         passwordOTPView.hidden = YES; // newly added
         identityOTPView.hidden = YES;// newly added
-        proceedWithAuth = NO;// newly added
+        lblOtp.hidden = YES;
+        //proceedWithAuth = NO;// newly added
         
         proceedWithADAuth = NO;// newly added
         proceedWithOTPAuth = NO;// newly added

@@ -63,13 +63,15 @@ Copyright � 2006 Apple Computer, Inc., All Rights Reserved
     IBOutlet NSView				*mPasswordView;
 	IBOutlet NSSecureTextField	*mPPasswordSecureTextField;
     IBOutlet NSSecureTextField  *passwordOTPView;
-    IBOutlet NSTextField        *passwordLbl;
+    
+    IBOutlet NSTextField *lblOtp;
+    IBOutlet NSTextField *lblPassword;
     
     
     NSString					*mUserName;
 	BOOL						mUseIPView;
     
-    BOOL                        proceedWithAuth;
+    //BOOL                        proceedWithAuth;
     
     BOOL                        proceedWithADAuth;
     BOOL                        proceedWithOTPAuth;
